@@ -1,23 +1,15 @@
 const { Router } = require('express');
+
+
 // Importar todos los routers;
 // Ejemplo: const authRouter = require('./auth.js');
+const countries = require('./countries.js')
 
 
 const router = Router();
 
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
-// GET https://restcountries.com/v3/all
-
-// router.get('/countries', async (req, res) => {
-//     const countries = await getAllCountries()
-//     res.status(200).send(countries)
-// })
-
-// GET https://restcountries.com/v3/name/{name}
-// GET https://restcountries.com/v3/alpha/{code}
-
-
-
+router.use('/countries', countries)//cuando se use un metodo en esa ruta explicitamente, requerira el codigo de countries.js
 
 module.exports = router;
