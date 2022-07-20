@@ -18,12 +18,12 @@ module.exports = (sequelize) => {
         }
      },
      duration: {
-        type: DataTypes.TIME,
+        type: DataTypes.STRING,
         allowNull: false,
-        get() {
-            const valor = this.getDataValue('duration');
-            return valor ? `${valor} hs` : null 
-        }
+      //   get() {
+      //       const valor = this.getDataValue('duration');
+      //       return valor ? `${valor}hs` : null 
+      //   }
      },
      season: {
         type: DataTypes.ENUM('Verano', 'Otoño', 'Invierno', 'Primavera'),

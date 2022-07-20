@@ -1,11 +1,11 @@
 const { Router } = require('express')
-const {countryById } = require('../utils/countryById')
+const {countryByIdUtils } = require('../utils/countryByIdUtils')
 const router = Router();
 
 router.get('/:id', async (req, res) => {
     const { id } = req.params;
     try {
-        const CBI = await countryById(id)
+        const CBI = await countryByIdUtils(id)
         CBI ? 
         res.status(200).send(CBI) :
         res.status(404).send('Country not found (>.<) | Error 404')
