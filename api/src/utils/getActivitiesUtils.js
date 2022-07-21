@@ -1,5 +1,4 @@
-const { Op } = require('sequelize')
-const{ Country, Activity } = require('../db')
+const{ Activity } = require('../db')
 
 const getActivitiesUtils = async () => {
     try {
@@ -8,6 +7,5 @@ const getActivitiesUtils = async () => {
         } catch (error) {
             console.log('getActivitiesUtils failing (-.-)' + error)
         }
-
 }
 module.exports = getActivitiesUtils;
