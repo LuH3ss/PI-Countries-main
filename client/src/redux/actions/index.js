@@ -27,15 +27,50 @@ export function getById (id) {
 
 export function getByContinent (continent) {
     return {
-        type: 'byContinent',
+        type: 'BY_CONTINENT',
         payload: continent
     }
 
 }
 
+export function getActivity (payload) {
+    return async (dispatch) => { 
+        const dataDb = await axios(`${EP}/activities`, payload);
+        return dispatch ({
+            type: 'ALL_ACTIVITIES',
+            payload: dataDb.data
+        })
+    }
+}
+
+export function postActivity () {
+    return async (dispatch) => { 
+        const response = await axios.post(`${EP}/activities`);
+        return response
+    }
+}
+
+
 export function getOrdered (value) {
     return {
-        type: 'ordered',
+        type: 'SORTED',
         payload: value
+    }
+}
+
+export function getName (name) {
+    // return async (dispatch) => {
+    //     const dataDb = await axios(`${EP}/countries?name=` + name);
+    //     return dispatch {
+    //         type: 'COUNTRY_NAME',
+    //         payload: dataDb.data
+    //     }
+    // }
+    return async (dispatch) => {
+        const dataDb = await axios(`${EP}/countries?name=` + name);
+        return dispatch({
+            type: 'COUNTRY_NAME',
+            payload: dataDb.data
+        })
     }
 }

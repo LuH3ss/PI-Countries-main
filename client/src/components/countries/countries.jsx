@@ -4,6 +4,7 @@ import {useSelector, useDispatch} from 'react-redux'
 import {getAllCountries, getByContinent, getOrdered} from '../../redux/actions/index.js'
 import CountryCard from '../country/countryCard';
 import Paginator from '../paginado/Paginator.jsx';
+import SearchBar from '../SearchBar/searchBar.jsx';
 
 
 
@@ -22,6 +23,7 @@ export default function Countries () {
     }
 
     const handleContinent = (e) => {
+      if(e.target.value === 'Todos') dispatch(getAllCountries())  
       dispatch(getByContinent(e.target.value))
     }
 
@@ -54,6 +56,7 @@ export default function Countries () {
         countrysPP = {countriesPP}
         paginator = {paginator}
         />
+        <SearchBar/>
         <div>
           <select onChange={handleOrdered}>
             <option value='ascendente'>Orden Ascendente</option>
@@ -61,7 +64,7 @@ export default function Countries () {
           </select>
           <select onChange={handleContinent}>
            {/* <option value='allCountries'>Todo los paísses</option> */}
-             <option value=''>Por Continente</option>
+             <option value='Todos'>Todos</option>
              {
              continents.map(c => {
               return (

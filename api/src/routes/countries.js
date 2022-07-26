@@ -1,5 +1,5 @@
 const { Router } = require('express')
-const {allCountries, countriesByName } = require('../utils/countriesUltis')
+const {allCountries, countriesByName } = require('../utils/countriesUtils')
 const router = Router();
 
 router.get('/', async (req, res) => {// antes de cargar cualquier ruta que ya incliya, la barra, primero va a ejecutar esta funcion y depues, ejecutara lo que corresponda a lo que venga DESPUES de la '/'
