@@ -1,0 +1,12 @@
+.paginator {
+  list-style: none;
+  display: flex;
+  gap: 4px;
+}
+
+
+
+.num:hover {
+    color: blue;
+    cursor: pointer;
+}

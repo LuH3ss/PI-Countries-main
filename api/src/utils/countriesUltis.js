@@ -16,7 +16,7 @@ const allCountries = async () => {
                     flags: country.flags[0],
                     continents: country.continents[0],
                     capital: country.capital ? country.capital[0] : 'Does not have any capital',
-                    subregion: country.subregion ? country.subregion : 'Undefined',
+                    subregion: country.subregion ? country.subregion : 'Undefined for this country 👀',
                     area: country.area,
                     population: country.population
                 }
@@ -40,7 +40,7 @@ const allCountries = async () => {
             });
 
 
-            countriesByDb = await Country.findAll({//ahora el findAll va a devolver la data le pedimos a la base de datos(que antes estaba vacia)
+            countriesByDb = await Country.findAll({//ahora el findAll va a devolver la data  que le pedimos a la base de datos(que antes estaba vacia)
                 include: [Activity]
             });
         }

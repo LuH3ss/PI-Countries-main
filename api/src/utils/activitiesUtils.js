@@ -15,7 +15,7 @@ const postActivityUtils = async (name, difficulty, duration, season, countries) 
             name: countries
         }
     })
-    return conts.addActivity(act)
+    return act.addCountry(conts)
     
     } catch(error) {
         console.log("postActivityutils failing ('O')" + error)

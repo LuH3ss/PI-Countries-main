@@ -14,3 +14,28 @@ export function getAllCountries () {
     }
 
 }
+
+export function getById (id) {
+    return async (dispatch) => {
+        const dataDb = await axios(`${EP}/countries/${id}`);
+        return dispatch({
+            type: COUNTRY,
+            payload: dataDb.data
+        })
+    }
+}
+
+export function getByContinent (continent) {
+    return {
+        type: 'byContinent',
+        payload: continent
+    }
+
+}
+
+export function getOrdered (value) {
+    return {
+        type: 'ordered',
+        payload: value
+    }
+}
