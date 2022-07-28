@@ -1,5 +1,5 @@
 import './App.css';
-import { Route, Switch, Link } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import { Home } from './components/home/home';
 import  Countries  from './components/countries/countries.jsx'
 import CountryId from './components/countryById/countryId';

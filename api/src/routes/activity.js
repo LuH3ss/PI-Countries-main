@@ -1,30 +1,41 @@
-const { Router } = require('express');
-//const {postActivityUtils} = require('../utils/activitiesUtils');
-const {Activity} = require('../db')
-const {getActivitiesUtils} = require('../utils/getActivitiesUtils')
+const {
+    Router
+} = require('express');
+const {
+    postActivityUtils
+} = require('../utils/activitiesUtils');
+const {
+    Activity,
+    Country
+} = require('../db')
+const {
+    getActivitiesUtils
+} = require('../utils/getActivitiesUtils')
+
 const router = Router();
- 
-
-router.post('/', async(req, res) => {
-    const { name, 
-        difficulty,
-        duration,
-        season,
-        countries} = req.body
 
 
-        if(!name || !difficulty || !duration || !season || !countries){
-            return res.status(404).send("Faltan Datos");
-        }
+router.post('/', async (req, res) => {
+    const {
+        name, difficulty, duration, season, countries} = req.body
+    const newAct = { name, difficulty, duration, season, countries}
 
-        const act = await Activity.create({...req.body})
-        
-        try {
-            console.log(act, "ACT")
+    if (!name || !difficulty || !duration || !season) {
+        return res.status(404).send("Faltan Datos");
+    }
+    try {
+        const act = await Activity.create(newAct)
+        let conts = await Country.findAll({
+            where: {
+                name: countries
+            }
+        })
+        await act.addCountries(conts)
+
         res.status(202).json(act)
     } catch (error) {
         res.status(404).send("Crashero" + error)
-         }
+    }
 });
 
 

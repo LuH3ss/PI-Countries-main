@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useEffect } from 'react';
 import {useSelector, useDispatch} from 'react-redux'
-import {getAllCountries, getByContinent, getOrdered} from '../../redux/actions/index.js'
+import {getAllCountries, getByContinent, getOrdered, getByPopulation, getByActivity} from '../../redux/actions/index.js'
 import CountryCard from '../country/countryCard';
 import Paginator from '../paginado/Paginator.jsx';
 import SearchBar from '../SearchBar/searchBar.jsx';
@@ -23,8 +23,17 @@ export default function Countries () {
     }
 
     const handleContinent = (e) => {
-      if(e.target.value === 'Todos') dispatch(getAllCountries())  
+     // if(e.target.value === 'Todos') dispatch(getAllCountries())  
       dispatch(getByContinent(e.target.value))
+    }
+
+    const handlePoblation = (e) => {
+      dispatch(getByPopulation(e.target.value))
+
+    }
+
+    const handleByAct = (e) => {
+      dispatch(getByActivity(e.target.value))
     }
 
 
@@ -38,8 +47,6 @@ export default function Countries () {
 
 
     const paginator = (e) => {
-      console.log(e.target)
-
       setPage(e.target.value)
       setCountriesPP(10)
     }
@@ -62,6 +69,10 @@ export default function Countries () {
             <option value='ascendente'>Orden Ascendente</option>
             <option value='descendente'>Orden Descendente</option>
           </select>
+          <select onChange={handleByAct}>
+            <option value='Todos'>Todos</option>
+            <option value='actividades'>Con Actividades</option>
+          </select>
           <select onChange={handleContinent}>
            {/* <option value='allCountries'>Todo los paísses</option> */}
              <option value='Todos'>Todos</option>
@@ -74,19 +85,25 @@ export default function Countries () {
              }
              {/* <option value='byActivity'>Por Actividad</option> */}
           </select>
+          <select onChange={handlePoblation}>
+             <option value='Todos'>Todos</option>
+             <option value='less_population'>Por menor población</option>
+             <option value='more_population'>Por mayor población</option>
+          </select>
         </div>
-        {countriesAtPage.map(({id, name, flags, continents})=> {
+        {countriesAtPage.map(({id, name, flags, continents, population})=> {
             return <CountryCard
             key = {id}
             id = {id}
             name = {name}
             flags = {flags}
             continent = {continents}
+            population = {population}
             />
         })
         }
     </div>
-  ) 
+  )
 }
 
 

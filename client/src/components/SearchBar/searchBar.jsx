@@ -21,7 +21,7 @@ export default function SearchBar() {
   return (
     <form onSubmit={handleSubmit}>
         <input
-        value={name}
+        //value={name}
         onChange={handleInput}
         type = 'text'
         placeholder = 'Qué país querés ver?'

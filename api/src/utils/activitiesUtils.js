@@ -1,13 +1,14 @@
 
 const {Activty, Country} = require('../db') 
 
-const postActivityUtils = async (name, difficulty, duration, season, countries) => {
+async function postActivityUtils (name, difficulty, duration, season, countries)  {
     try {
     let act = await Activty.create({
         name, 
         difficulty,
         duration,
-        season
+        season,
+        
     })// crea en la db con los args
     
     let conts = await Country.findAll({
@@ -15,10 +16,11 @@ const postActivityUtils = async (name, difficulty, duration, season, countries) 
             name: countries
         }
     })
-    return act.addCountry(conts)
+    await act.addCountry(conts)
+
     
     } catch(error) {
-        console.log("postActivityutils failing ('O')" + error)
+        console.log("postActivityUtils failing ('O')" + error)
     }
 }
 

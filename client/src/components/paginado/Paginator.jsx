@@ -12,9 +12,6 @@ export default function Paginator({countrysPP, allCountries, paginator}) {
     }
 
 
-    // console.log(allCountries, 'allcountries')
-    // console.log(countrysPP, 'countryPP')
-    // console.log(pages, 'pages')
     return (
         <nav>
             <ul className='paginator'>

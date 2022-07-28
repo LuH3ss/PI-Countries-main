@@ -30,57 +30,99 @@ const reducer = (state = initialStates, action) => {
                             return country.continents === action.payload //continent
                         })
                 }
-                case 'SORTED':
-                    let countriesSorted = [...state.countriesAux].sort((a, b) => {
-                        if (action.payload === 'ascendente') {
-                            if (a.name > b.name) {
+                case 'BY_POPULATION':
+                    let countriesByPop = [...state.countriesAux].sort((a, b) => {
+                        if (action.payload === 'less_population') {
+                            if (a.population > b.population) {
                                 return 1;
                             }
-                            if (a.name < b.name) {
+                            if (a.population < b.population) {
                                 return -1;
                             }
 
                             return 0;
                         };
-                        if (action.payload === 'descendente') {
-                            if (a.name < b.name) {
+                        if (action.payload === 'more_population') {
+                            if (a.population < b.population) {
                                 return 1;
                             }
-                            if (a.name > b.name) {
+                            if (a.population > b.population) {
                                 return -1;
                             }
                             return 0;
                         }
                         return 0
                     })
+
                     return {
                         ...state,
-                        countries: state.countries = countriesSorted,
-                            countriesAux: state.countriesAux = countriesSorted
+                        countries:
+                            action.payload === 'Todos' ?
+                            state.countriesAux :
+                            countriesByPop
+
                     }
-                    case COUNTRY:
+                    case 'SORTED':
+                        let countriesSorted = [...state.countriesAux].sort((a, b) => {
+                            if (action.payload === 'ascendente') {
+                                if (a.name > b.name) {
+                                    return 1;
+                                }
+                                if (a.name < b.name) {
+                                    return -1;
+                                }
+
+                                return 0;
+                            };
+                            if (action.payload === 'descendente') {
+                                if (a.name < b.name) {
+                                    return 1;
+                                }
+                                if (a.name > b.name) {
+                                    return -1;
+                                }
+                                return 0;
+                            }
+                            return 0
+                        })
                         return {
                             ...state,
-                            countryDetail: action.payload
+                            countries: state.countries = countriesSorted,
+                                countriesAux: state.countriesAux = countriesSorted
                         }
-                        case 'COUNTRY_NAME':
+                        case COUNTRY:
                             return {
                                 ...state,
-                                countries: action.payload,
-                                    countriesAux: action.payload
+                                countryDetail: action.payload
                             }
-                            case 'POST_ACTIVITY':
+                            case 'COUNTRY_NAME':
                                 return {
-                                    ...state
+                                    ...state,
+                                    countries: action.payload,
+                                        countriesAux: action.payload
                                 }
-                                case 'ALL_ACTIVITIES':
+                                case 'POST_ACTIVITY':
                                     return {
-                                        ...state,
-                                        activities: action.payload
-
+                                        ...state
                                     }
-                                    default:
-                                        return state
+                                    case 'ALL_ACTIVITIES':
+                                        return {
+                                            ...state,
+                                            activities: action.payload
+                                        }
+                                        case 'BY_ACTIVITY':
+                                            return {
+                                                ...state,
+
+                                                countries:
+                                                    action.payload === 'Todos' ?
+                                                    state.countriesAux :
+                                                    state.countriesAux.filter((country) => {
+                                                        return country.activites === action.payload 
+                                                    })
+                                            }
+                                            default:
+                                                return state
     }
 
 }

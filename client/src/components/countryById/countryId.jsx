@@ -6,7 +6,7 @@ import {getById} from '../../redux/actions/index.js'
 
 export default function CountryId() {
     const dispatch = useDispatch()
-    const {id } = useParams()
+    const { id } = useParams()
     useEffect(()=> {
         dispatch(getById(id))
     }, [])
@@ -27,8 +27,16 @@ export default function CountryId() {
         <p>Subregión: {country.subregion}</p>
         <p>Área: {country.area}km²</p>
         <p>Población: {country.population} habitantes</p>
-        <p>Actividades: {country.activities}</p>
-
+        <h3>Actividades:</h3>
+        <ul>
+          {
+            country.activities?.map(a => {
+              return (
+                <li key={a}>{a.name},Temporada: {a.season},Duración: {a.duration}, Dificultad: {a.difficulty}, </li>
+              )
+            })
+          }
+        </ul>
     </div>
   )
 }

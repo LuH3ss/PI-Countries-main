@@ -30,12 +30,26 @@ export function getByContinent (continent) {
         type: 'BY_CONTINENT',
         payload: continent
     }
+}
+
+export function getByPopulation (population) {
+    return {
+        type: 'BY_POPULATION',
+        payload: population
+    }
+}
+
+export function getByActivity (activity) {
+    return {
+        type: 'BY_ACTIVITY',
+        payload: activity
+    }
 
 }
 
-export function getActivity (payload) {
+export function getActivity () {
     return async (dispatch) => { 
-        const dataDb = await axios(`${EP}/activities`, payload);
+        const dataDb = await axios(`${EP}/activities`);
         return dispatch ({
             type: 'ALL_ACTIVITIES',
             payload: dataDb.data
@@ -43,9 +57,9 @@ export function getActivity (payload) {
     }
 }
 
-export function postActivity () {
+export function postActivity (payload) {
     return async (dispatch) => { 
-        const response = await axios.post(`${EP}/activities`);
+        const response = await axios.post(`${EP}/activities`, payload);
         return response
     }
 }
