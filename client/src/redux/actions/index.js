@@ -50,6 +50,7 @@ export function getByActivity (activity) {
 export function getActivity () {
     return async (dispatch) => { 
         const dataDb = await axios(`${EP}/activities`);
+        console.log(dataDb.data)
         return dispatch ({
             type: 'ALL_ACTIVITIES',
             payload: dataDb.data
@@ -73,13 +74,6 @@ export function getOrdered (value) {
 }
 
 export function getName (name) {
-    // return async (dispatch) => {
-    //     const dataDb = await axios(`${EP}/countries?name=` + name);
-    //     return dispatch {
-    //         type: 'COUNTRY_NAME',
-    //         payload: dataDb.data
-    //     }
-    // }
     return async (dispatch) => {
         const dataDb = await axios(`${EP}/countries?name=` + name);
         return dispatch({

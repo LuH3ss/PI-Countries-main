@@ -1,0 +1,20 @@
+
+.detail_container {
+    background-image: url('../../assets/mapa-desk.jpg');
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    height: 100vh;
+    color: black;
+}
+
+.detail_container img {
+    max-width: 40%;
+}
+
+.detail_container ul {
+    text-align: center;
+}
+

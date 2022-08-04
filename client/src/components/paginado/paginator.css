@@ -1,7 +1,17 @@
 .paginator {
   list-style: none;
   display: flex;
+  flex-wrap: wrap;
   gap: 4px;
+  background-color: #A68358;
+  border: #735439 solid;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.paginator li {
+  border: #735439 solid;
+  border-radius: 5px;
 }
 
 

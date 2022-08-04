@@ -7,6 +7,7 @@ const countries = require('./countries.js')
 const country = require('./country')
 const activity = require('./activity')
 
+
 const router = Router();
 
 // Configurar los routers
@@ -14,5 +15,7 @@ const router = Router();
 router.use('/countries', countries)//cuando se use un metodo en esa ruta explicitamente, requerira el codigo de countries.js
 router.use('/countries', country)
 router.use('/activities', activity)
+
+
 
 module.exports = router;

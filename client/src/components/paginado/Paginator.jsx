@@ -1,14 +1,14 @@
 import React from 'react'
 import './paginator.css'
 
-export default function Paginator({countrysPP, allCountries, paginator}) {
+export default function Paginator({ allCountries, paginator, nineCountries = 9, tenCountries}) {
 
     const pages = []
 
 
-    for (let i = 0; i <= Math.ceil(allCountries/countrysPP); i++) {
-        pages.push(i + 1)
-        
+    for (let i = 1; i <= Math.ceil((((allCountries - nineCountries)/tenCountries)) + 1); i++) {
+        pages.push(i )
+
     }
 
 

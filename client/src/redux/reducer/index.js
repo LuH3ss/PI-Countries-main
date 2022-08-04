@@ -7,7 +7,7 @@ import {
 const initialStates = {
     countries: [],
     countriesAux: [], //este arreglo es una copia del countries original. Está para que en el renderizado, no cuente con un unico arreglo y las acciones no sean permanentes.
-    countryDetail: [],
+    countryDetail: {},
     activities: []
 }
 
@@ -95,34 +95,44 @@ const reducer = (state = initialStates, action) => {
                                 ...state,
                                 countryDetail: action.payload
                             }
-                            case 'COUNTRY_NAME':
+                            case 'CLEAN':
                                 return {
                                     ...state,
-                                    countries: action.payload,
-                                        countriesAux: action.payload
+                                    countryDetail: action.payload
                                 }
-                                case 'POST_ACTIVITY':
+                                case 'COUNTRY_NAME':
                                     return {
-                                        ...state
+                                        ...state,
+                                        countries: action.payload,
+                                            countriesAux: action.payload
                                     }
-                                    case 'ALL_ACTIVITIES':
+                                    case 'POST_ACTIVITY':
                                         return {
-                                            ...state,
-                                            activities: action.payload
+                                            ...state
                                         }
-                                        case 'BY_ACTIVITY':
+                                        case 'ALL_ACTIVITIES':
                                             return {
                                                 ...state,
-
-                                                countries:
-                                                    action.payload === 'Todos' ?
-                                                    state.countriesAux :
-                                                    state.countriesAux.filter((country) => {
-                                                        return country.activites === action.payload 
-                                                    })
+                                                activities: action.payload
                                             }
-                                            default:
-                                                return state
+                                            case 'BY_ACTIVITY':
+                                                const allCountries =[ ...state.countriesAux];
+                                                console.log(allCountries)
+                                                const auxCountries =[...state.countriesAux];
+                                                const byAct = action.payload === 'Todos' ? auxCountries : allCountries.filter(country => country.activities?.find(act => act.name === action.payload))
+                                                console.log(byAct)
+
+                                                return {
+                                                    ...state,
+                                                    countries: byAct,
+                                                    countriesAux: allCountries 
+                                                }
+
+
+                                                default:
+                                                    console.log(state.activities)
+                                                    console.log(state.countries)
+                                                    return state
     }
 
 }

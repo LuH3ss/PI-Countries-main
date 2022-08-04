@@ -1,16 +1,13 @@
 const {
     Router
 } = require('express');
-const {
-    postActivityUtils
-} = require('../utils/activitiesUtils');
+
 const {
     Activity,
     Country
 } = require('../db')
-const {
-    getActivitiesUtils
-} = require('../utils/getActivitiesUtils')
+
+
 
 const router = Router();
 
@@ -41,11 +38,18 @@ router.post('/', async (req, res) => {
 
 router.get('/', async (req, res) => {
     try {
-        let acts = await getActivitiesUtils();
-        res.status(200).send(acts)
+        let acts = await Activity.findAll({
+            include: [Country],
+            attributes: ['id', 'name']
+        })
+        console.log(acts, 'actividadessss')
+        res.status(200).json(acts)
     } catch (error) {
-        console.log('getActivitiesUtils at routes (>.<)')
+        console.log('getActivitiesUtils at routes (>.<)', error)
     }
 })
+
+
+
 
 module.exports = router

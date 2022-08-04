@@ -1,12 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import './home.css'
 
 
-export const Home = () => {
+const Home = () => {
 
     return (
-        <div>
-            <div>{/**este div tendra img de fondo paises */}
+        <div className='container'>
+            <div className='container_intro'>
             <h1>Hola!</h1>
             <h3>Click en el boton para ingresar 😉</h3>
             <Link to="/countries">
@@ -19,3 +20,5 @@ export const Home = () => {
 
 
 }
+
+export default Home

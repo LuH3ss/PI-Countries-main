@@ -1,0 +1,27 @@
+.country_card {
+    min-width: 200px;
+    max-width: 400px;
+    background-color: #b7d97f;
+    display: flex;
+    flex-direction: column;
+    border-radius: 5px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    border: solid #A68358;
+}
+
+.country_card img {
+    max-width: 90%;
+}
+
+.country_card ul li {
+    list-style: none;
+}
+
+.country_card button {
+    border: solid #A68358;
+}
+

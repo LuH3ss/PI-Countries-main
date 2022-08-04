@@ -1,16 +1,25 @@
 import React, { useEffect, useState } from 'react'
-import { getActivity, getAllCountries, postActivity } from '../../redux/actions/index.js'
+import {  getAllCountries, postActivity } from '../../redux/actions/index.js'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link, useHistory } from 'react-router-dom'
+import { Link } from 'react-router-dom'
+import './createAct.css'
 
 
 
 export default function CreateActivity() {
 
     const dispatch = useDispatch()
-    const history = useHistory
     const countries = useSelector(state => state.countries)
     //const activities = useSelector(state => state.activities)
+
+    const [errorButton, setErrorButton] = useState(true)
+    const [formErrors, setFormErrors] = useState({
+        name: '',
+        season: '',
+        difficulty: '',
+        duration:''
+    })
+    
     const [input, setInput] = useState({
         name: "",
         difficulty: "",
@@ -18,18 +27,28 @@ export default function CreateActivity() {
         season: "",
         countries: []
     })
-    const [incorrect, setIncorrect] = useState(true)
+
 
     useEffect(() => {
         //dispatch(getActivity())
         dispatch(getAllCountries())
     }, [dispatch])
 
+    useEffect(() => {
+        console.log(errorButton, 'errorBtn')
+    },[errorButton])
+
     function handleChange(e) {
         setInput({
             ...input,
             [e.target.name]: e.target.value
         })
+        setFormErrors(validate(input))
+        console.log(Object.keys(formErrors).length === 0, 'form errors')
+        if(Object.keys(formErrors).length === 0) {
+            console.log('cualquier cosa')
+            setErrorButton(false)
+        }
     }
     function handleCountries(e) {
         setInput({
@@ -48,17 +67,49 @@ export default function CreateActivity() {
             season: "",
             countries: []
         })
-        history.push('/countries')
+    }
+
+    function handeClean() {
+        setInput({
+            countries:[]
+        })
+    }
+
+    function validate(data) {
+        let errors = {}
+        if(validName(data.name)) errors.name = "Ingresar 3 caracteres minimo"
+        if(validSeason(data.season)) errors.season = "Ingresa una temporada válida"
+        if(validDuration(data.duration)) errors.duration = "De 00hs a 24hs. Incluí el 'hs'"
+        if(validDifficulty(data.difficulty)) errors.difficulty = "Solo ingresar del 1 al 5"
+        return errors
+    }
+
+    function validName(str) {
+        if (typeof str !== 'string') return true
+        if(str.length < 3) return true
+    }
+
+    function validSeason(str) {
+        if (typeof str !== 'string') return true
+     //   if (str !== 'Verano' || str !== 'Invierno' || str !== 'Otoño' || str !== 'Primavera') return true
+    }
+
+    function validDuration(str) {
+        if (typeof str !== 'string') return true
+    }
+
+    function validDifficulty(num) {
+      //  if (typeof num !== 'number') return true
+        if(num > 5 || num < 1) return true
     }
 
 
 
 
     return (
-        <div>
-            <Link to='/countries'><button>Volver</button></Link>
+        <div className='create_section'>
             <h1>Agregá una actividad</h1>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} className='form_container'>
                 <div>
                     <label>Nombre de la actividad</label>
                     <input
@@ -66,7 +117,13 @@ export default function CreateActivity() {
                         value={input.name}
                         name='name'
                         onChange={handleChange}
+                        required
                     />
+                    {
+                        formErrors.name ? 
+                        <span style={{color:"red"}}>{formErrors.name}</span> :
+                        false
+                    }
                 </div>
                 <div>
                     <label>Dificultad</label>
@@ -75,7 +132,13 @@ export default function CreateActivity() {
                         value={input.difficulty}
                         name='difficulty'
                         onChange={handleChange}
+                        required
                     />
+                    {
+                        formErrors.difficulty ? 
+                        <span style={{color:"red"}}>{formErrors.difficulty}</span> :
+                        false
+                    }
                 </div>
                 <div>
                     <label>Duración</label>
@@ -84,40 +147,69 @@ export default function CreateActivity() {
                         value={input.duration}
                         name='duration'
                         onChange={handleChange}
+                        required
                     />
+                    {
+                        formErrors.duration ?
+                        <span style={{color:"red"}}>{formErrors.duration}</span> :
+                        false
+                    }
                 </div>
                 <div>
                     <label>Temporada</label>
-                    <input
+                    {/* <input
                         type='text'
                         value={input.season}
                         name='season'
                         onChange={handleChange}
+                        required
                     />
+                    {
+                        formErrors.season ? 
+                        <span style={{color:"red"}}>{formErrors.season}</span> :
+                        false
+                    } */}
+                    <select 
+                        name='season'
+                        onChange={handleChange}
+                        required
+                        >
+                        <option value="-1">Temporada</option>
+                        <option value="Verano">Verano</option>
+                        <option value="Otoño">Otoño</option>
+                        <option value="Invierno">Invierno</option>
+                        <option value="Primavera">Primavera</option>
+                        </select>
+                        {
+                        formErrors.season ? 
+                        <span style={{color:"red"}}>{formErrors.season}</span> :
+                        false
+                    }
                 </div>
                 <div>
-                    <label>Paises donde se realiza la actividad</label>
+                    <label>Paises</label>
                     <input
                         type='text'
                         value={input.countries}
                         name='countries'
-                    onChange={handleChange}
+                        onChange={handleChange}
+                        required
+                        disabled={true}
                     />
                 </div>
                 <select name='countries' onChange={handleCountries}>
                     {
-                        countries.map(c=> {
+                        countries.map(c => {
                             return (
                                 <option key={c.id} value={c.name}>{c.name}</option>
                             )
                         })
                     }
-
                 </select>
-                <button type='submit' >Crear</button>
+                <button type='button' onClick={handeClean}>Limpiar selección de paises</button>
+                <button type='submit' disabled={errorButton}>Crear</button>
+                <Link to='/countries'><button>Volver</button></Link>
             </form>
-
-
         </div>
     )
 }
