@@ -19,6 +19,13 @@ const reducer = (state = initialStates, action) => {
                 countries: action.payload, //la dataDb
                     countriesAux: action.payload
             }
+            case 'BY_MORE_POP': 
+            return {
+                ...state,
+                countries: state.countriesAux.filter(country => {
+                    return country.population > 1000000
+                })
+            }
             case 'BY_CONTINENT':
                 return {
                     ...state,
@@ -117,21 +124,14 @@ const reducer = (state = initialStates, action) => {
                                             }
                                             case 'BY_ACTIVITY':
                                                 const allCountries =[ ...state.countriesAux];
-                                                console.log(allCountries)
                                                 const auxCountries =[...state.countriesAux];
                                                 const byAct = action.payload === 'Todos' ? auxCountries : allCountries.filter(country => country.activities?.find(act => act.name === action.payload))
-                                                console.log(byAct)
-
                                                 return {
                                                     ...state,
                                                     countries: byAct,
                                                     countriesAux: allCountries 
                                                 }
-
-
                                                 default:
-                                                    console.log(state.activities)
-                                                    console.log(state.countries)
                                                     return state
     }
 

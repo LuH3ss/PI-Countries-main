@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useEffect } from 'react';
 import {useSelector, useDispatch} from 'react-redux'
-import {getAllCountries, getByContinent, getOrdered, getByPopulation, getByActivity, getActivity} from '../../redux/actions/index.js'
+import {getAllCountries, getByContinent, getOrdered, getByPopulation, getByActivity, getActivity, getByMorePop} from '../../redux/actions/index.js'
 import CountryCard from '../country/countryCard';
 import Paginator from '../paginado/Paginator.jsx';
 import SearchBar from '../SearchBar/searchBar.jsx';
@@ -15,7 +15,7 @@ export default function Countries () {
     const dispatch = useDispatch()//acceso a dispatch function del store
     const allCountries = useSelector((state) => state.countries); //ahora tengo acceso a un estado global(que viene del store) en este componente local
     const allActivities = useSelector((state) => state.activities )
-    console.log(allActivities, 'actividades')
+    
     const [page, setPage] = useState(1) //en qué pag estoy
 
 
@@ -49,7 +49,7 @@ export default function Countries () {
 
     useEffect(() => {
       dispatch(getAllCountries())// este dispatch está aca por la razon de que queremos que se dispache al cargar el componente
-      console.log(allActivities)
+      
       dispatch(getActivity())
 
     },[dispatch])//asi  digo q se actualice 1 sola vez
@@ -71,7 +71,11 @@ export default function Countries () {
     }
 
 
-
+    const handleButtonPop = () => {
+      dispatch(getByMorePop())
+      setIndexFirstCountry(0)
+      setIndexLastCountry(nineCountries)
+    }
 
 
   return (
@@ -121,6 +125,9 @@ export default function Countries () {
              <option value='less_population'>Por menor población</option>
              <option value='more_population'>Por mayor población</option>
           </select>
+        </div>
+        <div>
+          <button onClick={handleButtonPop}>Paises con porblacion inmensa</button>
         </div>
         <div className='countries_cards'>
           {countriesAtPage.map(({id, name, flags, continents, population})=> {

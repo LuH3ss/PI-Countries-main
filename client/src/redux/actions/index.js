@@ -39,6 +39,13 @@ export function getByPopulation (population) {
     }
 }
 
+export function getByMorePop(population) {
+    return {
+        type: 'BY_MORE_POP',
+        payload: population
+    }
+}
+
 export function getByActivity (activity) {
     return {
         type: 'BY_ACTIVITY',
@@ -50,7 +57,7 @@ export function getByActivity (activity) {
 export function getActivity () {
     return async (dispatch) => { 
         const dataDb = await axios(`${EP}/activities`);
-        console.log(dataDb.data)
+      
         return dispatch ({
             type: 'ALL_ACTIVITIES',
             payload: dataDb.data

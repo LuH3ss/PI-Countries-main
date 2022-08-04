@@ -35,7 +35,7 @@ export default function CreateActivity() {
     }, [dispatch])
 
     useEffect(() => {
-        console.log(errorButton, 'errorBtn')
+       
     },[errorButton])
 
     function handleChange(e) {
@@ -44,9 +44,9 @@ export default function CreateActivity() {
             [e.target.name]: e.target.value
         })
         setFormErrors(validate(input))
-        console.log(Object.keys(formErrors).length === 0, 'form errors')
+      
         if(Object.keys(formErrors).length === 0) {
-            console.log('cualquier cosa')
+          
             setErrorButton(false)
         }
     }
@@ -58,6 +58,7 @@ export default function CreateActivity() {
     }
 
     function handleSubmit(e) {
+        e.preventDefault();
         dispatch(postActivity(input))
         alert('Actividad creada 🧗‍♀️')
         setInput({
@@ -103,6 +104,10 @@ export default function CreateActivity() {
         if(num > 5 || num < 1) return true
     }
 
+    // function validateCountries (num) {
+        
+    // }
+
 
 
 
@@ -128,7 +133,7 @@ export default function CreateActivity() {
                 <div>
                     <label>Dificultad</label>
                     <input
-                        type='text'
+                        type='number'
                         value={input.difficulty}
                         name='difficulty'
                         onChange={handleChange}
@@ -143,12 +148,13 @@ export default function CreateActivity() {
                 <div>
                     <label>Duración</label>
                     <input
-                        type='text'
+                        type='number'
                         value={input.duration}
                         name='duration'
                         onChange={handleChange}
                         required
                     />
+                    hs
                     {
                         formErrors.duration ?
                         <span style={{color:"red"}}>{formErrors.duration}</span> :
@@ -157,18 +163,6 @@ export default function CreateActivity() {
                 </div>
                 <div>
                     <label>Temporada</label>
-                    {/* <input
-                        type='text'
-                        value={input.season}
-                        name='season'
-                        onChange={handleChange}
-                        required
-                    />
-                    {
-                        formErrors.season ? 
-                        <span style={{color:"red"}}>{formErrors.season}</span> :
-                        false
-                    } */}
                     <select 
                         name='season'
                         onChange={handleChange}

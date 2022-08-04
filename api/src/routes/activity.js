@@ -42,7 +42,6 @@ router.get('/', async (req, res) => {
             include: [Country],
             attributes: ['id', 'name']
         })
-        console.log(acts, 'actividadessss')
         res.status(200).json(acts)
     } catch (error) {
         console.log('getActivitiesUtils at routes (>.<)', error)
