@@ -21,14 +21,14 @@ export default function SearchBar() {
     }
 
   return (
-    <form onSubmit={handleSubmit}>
-        <input
+    <form className='search-container' onSubmit={handleSubmit}>
+        <input 
+        className='searchbar_input'
         onChange={handleInput}
         type = 'text'
         placeholder = 'Qué país querés ver?'
-        className='searchbar_input'
         />
-        <button className='button-54' type = 'submit'>
+        <button className='button-84' type = 'submit'>
          Buscar
         </button>
     </form >

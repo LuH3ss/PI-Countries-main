@@ -6,6 +6,9 @@ import './navbar.css'
 export default function Navbar() {
   return (
     <div className='navbar'>
+    
+          <span className='home-title'>World Trip App</span>
+      
         <Link to='/'>
             <button>Home</button>
         </Link>
