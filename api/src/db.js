@@ -12,7 +12,7 @@ let sequelize = process.env.NODE.ENV ===  'production' ?
                 dialect: 'postgres',
                 host: DB_HOST,
                 port: 6000,
-                username: DB_NAME,
+                username: DB_USER,
                 password: DB_PASSWORD,
                 pool : {
                   max: 3,
