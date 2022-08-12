@@ -21,7 +21,9 @@ export default function CountryId() {
   const country = useSelector((state) => state.countryDetail);
 
   return (
-    <div className="detail_container">
+    <div className="detail_display">
+      <div className="country_container">
+
       <h1>{country.name}</h1>
       <img src={`${country.flags}`} alt={`Bandera de ${country.name}`} />
       <p>Código: {country.id}</p>
@@ -41,6 +43,7 @@ export default function CountryId() {
           );
         })}
       </ul>
+        </div>
     </div>
   );
 }
