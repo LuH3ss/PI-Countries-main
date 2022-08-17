@@ -50,6 +50,7 @@ export default function CreateActivity() {
             setErrorButton(false)
         }
     }
+    
     function handleCountries(e) {
         setInput({
             ...input,

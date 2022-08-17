@@ -1,5 +1,5 @@
 require('dotenv').config();
-const { Sequelize, Op,  } = require('sequelize');
+const { Sequelize } = require('sequelize');
 const fs = require('fs');
 const path = require('path');
 const {
@@ -31,7 +31,7 @@ let sequelize =
         ssl: true,
       })
     : new Sequelize(
-        `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/countries`,
+        `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/postgres`,
         { logging: false, native: false }
       );
 
