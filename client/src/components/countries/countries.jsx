@@ -8,7 +8,7 @@ import {
   getByPopulation,
   getByActivity,
   getActivity,
-  getByMorePop,
+  
 } from "../../redux/actions/index.js";
 import CountryCard from "../country/countryCard";
 import Paginator from "../paginado/Paginator.jsx";
@@ -79,11 +79,7 @@ export default function Countries() {
     setIndexLastCountry(page === 1 ? nineCountries : tenCountries * page - 1);
   };
 
-  const handleButtonPop = () => {
-    dispatch(getByMorePop());
-    setIndexFirstCountry(0);
-    setIndexLastCountry(nineCountries);
-  };
+  
 
   return (
     <div className="countries_countainer">

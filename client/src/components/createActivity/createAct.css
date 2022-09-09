@@ -1,17 +1,49 @@
 .create_section {
-    background-color: #C1D911;
+    background-image: url('../../assets/form_bg.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
     height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 15px;
 }
+.envolved_frame {
+    /* border: solid black; */
+   
+    width: 73%;
+    height: 710px;
+    display: flex;
+    flex-direction: column;
+    gap: 110px;
+    align-items: center;
+}
 
+.form_frame {
+    /* border: solid white; */
+    width: 980px;
+    height: 700px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.form_frame p{
+    max-width: 400px;
+    font-size: 3em;
+    color: rgb(2, 2, 2);
+    background-color: rgba(250, 235, 215, 0.502);
+    height: fit-content;
+    border-radius: 2rem;
+    
+  
+}
 .form_container {
-    background-color: #D2D9C7;
-    border: solid white;
+    background-color: #e9ede181;
+    width: 500px;
+    /* border: solid white; */
     border-radius: 15px;
-    height: 400px;
+    height: 560px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -20,6 +52,60 @@
     text-align: center;
 }
 
+.form_title {
+    /* border: solid white; */
+    width: inherit;
+    text-align: center;
+}
+
 .create_section button {
     width: 200px;
+}
+
+
+
+
+.button-27 {
+  appearance: none;
+  background-color: #000000;
+  border: 2px solid #1A1A1A;
+  border-radius: 15px;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: inline-block;
+  font-family: Roobert,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+  font-size: 16px;
+  font-weight: 600;
+  line-height: normal;
+  margin: 0;
+  min-height: 60px;
+  min-width: 0;
+  outline: none;
+  padding: 16px 24px;
+  text-align: center;
+  text-decoration: none;
+  transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  width: 100%;
+  will-change: transform;
+}
+
+.button-27:disabled {
+  pointer-events: none;
+  background-color: #0000004d;
+  
+}
+
+.button-27:hover {
+  box-shadow: rgba(0, 0, 0, 0.173) 0 8px 15px;
+  transform: translateY(-2px);
+background-color: rgba(128, 128, 128, 0.215);
+}
+
+.button-27:active {
+  box-shadow: none;
+  transform: translateY(0);
 }

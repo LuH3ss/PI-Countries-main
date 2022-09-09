@@ -50,6 +50,7 @@ export default function CreateActivity() {
             setErrorButton(false)
         }
     }
+    
     function handleCountries(e) {
         setInput({
             ...input,
@@ -105,7 +106,6 @@ export default function CreateActivity() {
     }
 
     // function validateCountries (num) {
-        
     // }
 
 
@@ -113,7 +113,14 @@ export default function CreateActivity() {
 
     return (
         <div className='create_section'>
-            <h1>Agregá una actividad</h1>
+            <div className='envolved_frame'>
+            <div className='form_title'>
+                <h1>Agregá una actividad</h1>
+            </div>
+            <div className='form_frame'>
+            <p>
+                Para crear una actividad turistica debes llenar este formulario. 🗓️🖋️
+            </p>
             <form onSubmit={handleSubmit} className='form_container'>
                 <div>
                     <label>Nombre de la actividad</label>
@@ -123,9 +130,9 @@ export default function CreateActivity() {
                         name='name'
                         onChange={handleChange}
                         required
-                    />
+                        />
                     {
-                        formErrors.name ? 
+                        formErrors.name ?
                         <span style={{color:"red"}}>{formErrors.name}</span> :
                         false
                     }
@@ -138,9 +145,9 @@ export default function CreateActivity() {
                         name='difficulty'
                         onChange={handleChange}
                         required
-                    />
+                        />
                     {
-                        formErrors.difficulty ? 
+                        formErrors.difficulty ?
                         <span style={{color:"red"}}>{formErrors.difficulty}</span> :
                         false
                     }
@@ -153,7 +160,7 @@ export default function CreateActivity() {
                         name='duration'
                         onChange={handleChange}
                         required
-                    />
+                        />
                     hs
                     {
                         formErrors.duration ?
@@ -175,10 +182,10 @@ export default function CreateActivity() {
                         <option value="Primavera">Primavera</option>
                         </select>
                         {
-                        formErrors.season ? 
-                        <span style={{color:"red"}}>{formErrors.season}</span> :
-                        false
-                    }
+                            formErrors.season ? 
+                            <span style={{color:"red"}}>{formErrors.season}</span> :
+                            false
+                        }
                 </div>
                 <div>
                     <label>Paises</label>
@@ -189,21 +196,23 @@ export default function CreateActivity() {
                         onChange={handleChange}
                         required
                         disabled={true}
-                    />
+                        />
                 </div>
                 <select name='countries' onChange={handleCountries}>
                     {
                         countries.map(c => {
                             return (
                                 <option key={c.id} value={c.name}>{c.name}</option>
-                            )
-                        })
-                    }
+                                )
+                            })
+                        }
                 </select>
-                <button type='button' onClick={handeClean}>Limpiar selección de paises</button>
-                <button type='submit' disabled={errorButton}>Crear</button>
-                <Link to='/countries'><button>Volver</button></Link>
+                <button className='button-27' type='button' onClick={handeClean}>Limpiar selección de paises</button>
+                <button className='button-27' type='submit' disabled={errorButton}>Crear</button>
+                <Link to='/countries'><button className='button-27'>Volver</button></Link>
             </form>
+        </div>
+                            </div>
         </div>
     )
 }

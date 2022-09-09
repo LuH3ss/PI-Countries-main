@@ -2,11 +2,11 @@ import { ALL_COUNTRIES, COUNTRY } from "./actionTypes";
 import axios from 'axios'
 //primero invocamos a la url a la cual le haremos las peticiones
 
-const EP = 'http://localhost:3001' 
+// const EP = 'http://localhost:3001' 
 
 export function getAllCountries () {
     return async (dispatch) => { //dispatch, quien pide al store hacer tal cosa
-        const dataDb = await axios(`${EP}/countries`);//axios retorna un {} con una prop data, y ahi es donde tango la info que neecesito
+        const dataDb = await axios(`/countries`);//axios retorna un {} con una prop data, y ahi es donde tango la info que neecesito
         return dispatch ({
             type: ALL_COUNTRIES,
             payload: dataDb.data
@@ -17,7 +17,7 @@ export function getAllCountries () {
 
 export function getById (id) {
     return async (dispatch) => {
-        const dataDb = await axios(`${EP}/countries/${id}`);
+        const dataDb = await axios(`/countries/${id}`);
         return dispatch({
             type: COUNTRY,
             payload: dataDb.data
@@ -56,7 +56,7 @@ export function getByActivity (activity) {
 
 export function getActivity () {
     return async (dispatch) => { 
-        const dataDb = await axios(`${EP}/activities`);
+        const dataDb = await axios(`/activities`);
       
         return dispatch ({
             type: 'ALL_ACTIVITIES',
@@ -67,7 +67,7 @@ export function getActivity () {
 
 export function postActivity (payload) {
     return async (dispatch) => { 
-        const response = await axios.post(`${EP}/activities`, payload);
+        const response = await axios.post(`/activities`, payload);
         return response
     }
 }
@@ -82,7 +82,7 @@ export function getOrdered (value) {
 
 export function getName (name) {
     return async (dispatch) => {
-        const dataDb = await axios(`${EP}/countries?name=` + name);
+        const dataDb = await axios(`/countries?name=` + name);
         return dispatch({
             type: 'COUNTRY_NAME',
             payload: dataDb.data
