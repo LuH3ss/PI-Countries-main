@@ -1,33 +1,45 @@
 
 .detail_display {
     background-image: url('../../assets/mapa-desk.jpg');
+    padding-top: 5%;
     background-size: cover;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     height: 100vh;
-    color: white;
+    color: rgb(0, 0, 0);
+    position: relative;
 }
 
-.country_container {
+.detail {
     display: flex;
     flex-direction: column;
     gap: 10px;
     align-items: center;
-    background-color: rgba(245, 245, 220, 0.759);
-    border: solid black;
-    color: black;
-    border-radius: 20px;
-    max-width: 600px;
-    height: auto;
-    padding: 50px 0;
+    background-color: rgba(250, 235, 215, 0.517);
+    margin: auto;
+    width: 50%;
+
 }
 
-.country_container img {
+.detail img {
     max-width: 40%;
 }
 
-.country_container ul {
+
+.detail ul {
     text-align: center;
+}
+
+.detail_activities  {
+    background-color: black;
+    color: aliceblue;
+    height: fit-content;
+    border: solid 2px antiquewhite;
+    width: 98.9%;
+    text-align: center;
+    min-height: fit-content;
+    padding-top: 20px;
+}
+
+.act_container {
+    padding: 2% 0;
 }
 

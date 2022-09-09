@@ -1,36 +1,10 @@
-.country_card {
-    min-width: 200px;
-    max-width: 400px;
-    background-color: #00000097;
+.empty-container {
     display: flex;
     flex-direction: column;
-    border-radius: 5px;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    justify-content: center;
-    align-items: center;
-    padding: 10px;
-    border: solid wheat;
-    color: wheat;
-    min-height: 570px;
-    height: fit-content;
-    gap: 20px;
-    font-size: 20px;
-    font-weight: 400;
-
-}
-
-.country_card img {
-    max-width: 90%;
+    gap: 15%;
+    height: 180px;
     
 }
-
-.country_card ul li {
-    list-style: none;
-}
-
-
-
 
 .button-84 {
     align-items: center;
@@ -82,4 +56,3 @@
       height: 48px;
     }
   }
-
