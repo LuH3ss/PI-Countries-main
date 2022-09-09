@@ -1,4 +1,17 @@
+.searchbar_input {
+    height: 30px;
+    border-radius: 10px;
+    background-color: rgba(252, 252, 252, 0.654);
+ 
+  
+}
 
+.search-container {
+  display: flex;
+  align-items: baseline;
+  height: fit-content;
+  margin-bottom: 2;
+}
 
 
 .button-84 {
@@ -50,19 +63,4 @@
   .button-84 {
     height: 48px;
   }
-}
-
-.searchbar_input {
-    height: 30px;
-    border-radius: 10px;
-    background-color: rgba(252, 252, 252, 0.654);
- 
-  
-}
-
-.search-container {
-  display: flex;
-  justify-content: center;
-  gap: 5px;
-  margin-bottom: 15px;
 }

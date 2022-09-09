@@ -1,20 +1,45 @@
 
 .detail_container {
     background-image: url('../../assets/mapa-desk.jpg');
+    padding-top: 5%;
     background-size: cover;
+    height: 100vh;
+    color: rgb(0, 0, 0);
+    position: relative;
+}
+
+.detail {
     display: flex;
     flex-direction: column;
     gap: 10px;
     align-items: center;
-    height: 100vh;
-    color: white;
+    background-color: rgba(250, 235, 215, 0.517);
+    margin: auto;
+    width: 50%;
+
 }
 
-.detail_container img {
+.detail img {
     max-width: 40%;
 }
 
-.detail_container ul {
+
+.detail ul {
     text-align: center;
+}
+
+.detail_activities  {
+    background-color: black;
+    color: aliceblue;
+    height: fit-content;
+    border: solid 2px antiquewhite;
+    width: 98.9%;
+    text-align: center;
+    min-height: fit-content;
+    padding-top: 20px;
+}
+
+.act_container {
+    padding: 2% 0;
 }
 
