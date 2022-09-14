@@ -111,7 +111,9 @@ const reducer = (state = initialStates, action) => {
                                     return {
                                         ...state,
                                         countries: action.payload,
-                                            countriesAux: action.payload
+                                                
+                                            countriesAux:  action.payload
+                                                           
                                     }
                                     case 'POST_ACTIVITY':
                                         return {

@@ -1,3 +1,4 @@
+/* eslint-disable no-unreachable */
 import { ALL_COUNTRIES, COUNTRY } from "./actionTypes";
 import axios from 'axios'
 //primero invocamos a la url a la cual le haremos las peticiones
@@ -81,11 +82,15 @@ export function getOrdered (value) {
 }
 
 export function getName (name) {
+    try {
     return async (dispatch) => {
         const dataDb = await axios(`/countries?name=` + name);
         return dispatch({
             type: 'COUNTRY_NAME',
             payload: dataDb.data
         })
+    }
+    } catch (err) {
+        console.log(err)
     }
 }
