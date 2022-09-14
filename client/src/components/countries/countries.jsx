@@ -85,6 +85,8 @@ export default function Countries() {
     setIndexLastCountry(nineCountries);
   };
 
+  
+
   return (
     <div className="countries_countainer">
       <div className="countries_paginator">
@@ -95,7 +97,9 @@ export default function Countries() {
           tenCountries={tenCountries}
         />
       </div>
-      <SearchBar />
+      <SearchBar
+      countries={allCountries}
+      />
       <div className="countries_filters">
         <select onChange={handleOrdered} className="filter">
           <option value="ascendente">Orden Ascendente</option>

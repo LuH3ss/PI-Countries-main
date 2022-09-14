@@ -4,11 +4,12 @@ import {useDispatch} from 'react-redux'
 import {getName} from '../../redux/actions/index.js'
 import './searchBar.css'
 
-export default function SearchBar() {
+export default function SearchBar({countries}) {
 
 
     const dispatch = useDispatch();
     const [name, setName] = useState("")
+  
 
     function handleInput(e) {
       e.preventDefault()
@@ -28,6 +29,16 @@ export default function SearchBar() {
         type = 'text'
         placeholder = 'Qué país querés ver?'
         />
+          {/* {
+            handleSubmit() 
+            ? (
+              <span>Hola hola error</span>
+            )
+            : (
+              null
+            )
+
+          } */}
         <button className='button-84' type = 'submit'>
          Buscar
         </button>
